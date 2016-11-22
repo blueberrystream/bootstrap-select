@@ -1013,7 +1013,7 @@
           });
         };
         getSize();
-        this.$searchbox.off('input.getSize propertychange.getSize').on('input.getSize propertychange.getSize', getSize);
+        this.$searchbox.off('input.getSize').on('input.getSize', getSize);
         $window.off('resize.getSize scroll.getSize').on('resize.getSize scroll.getSize', getSize);
       } else if (this.options.size && this.options.size != 'auto' && this.$lis.not(notDisabled).length > this.options.size) {
         var optIndex = this.$lis.not('.divider').not(notDisabled).children().slice(0, this.options.size).last().parent().index(),
@@ -1419,7 +1419,7 @@
         e.stopPropagation();
       });
 
-      this.$searchbox.on('input propertychange', function () {
+      this.$searchbox.on('input', function () {
         that.$lis.not('.is-hidden').removeClass('hidden');
         that.$lis.filter('.active').removeClass('active');
         $no_results.remove();
@@ -1764,7 +1764,7 @@
       this.liHeight(true);
       this.setStyle();
       this.setWidth();
-      if (this.$lis) this.$searchbox.trigger('propertychange');
+      if (this.$lis) this.$searchbox.trigger('input');
 
       this.$element.trigger('refreshed.bs.select');
     },
